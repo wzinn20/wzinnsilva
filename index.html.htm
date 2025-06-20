@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sua Página</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .bubbles-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .bubble {
+            position: absolute;
+            width: 60px; height: 60px;
+            opacity: 0.7;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: auto;
+            transition: 
+                transform 0.3s cubic-bezier(.25,.8,.25,1), 
+                box-shadow 0.3s, 
+                background 0.3s, 
+                filter 0.3s;
+            user-select: none;
+            /* Animação de leve flutuação */
+            animation: float-bubble 4s ease-in-out infinite;
+        }
+        /* Cada bolha com um delay diferente para efeito natural */
+        .bubble:nth-child(1)  { animation-delay: 0s; }
+        .bubble:nth-child(2)  { animation-delay: 0.5s; }
+        .bubble:nth-child(3)  { animation-delay: 1s; }
+        .bubble:nth-child(4)  { animation-delay: 1.5s; }
+        .bubble:nth-child(5)  { animation-delay: 2s; }
+        .bubble:nth-child(6)  { animation-delay: 2.5s; }
+        .bubble:nth-child(7)  { animation-delay: 3s; }
+        .bubble:nth-child(8)  { animation-delay: 3.5s; }
+        .bubble:nth-child(9)  { animation-delay: 1.2s; }
+        .bubble:nth-child(10) { animation-delay: 2.2s; }
+        .bubble:nth-child(11) { animation-delay: 0.8s; }
+        .bubble:nth-child(12) { animation-delay: 1.8s; }
+        .bubble:nth-child(13) { animation-delay: 2.8s; }
+        .bubble:nth-child(14) { animation-delay: 3.8s; }
+        .bubble:nth-child(15) { animation-delay: 0.3s; }
+        .bubble:nth-child(16) { animation-delay: 1.3s; }
+        .bubble:nth-child(17) { animation-delay: 2.3s; }
+        .bubble:nth-child(18) { animation-delay: 3.3s; }
+        .bubble:nth-child(19) { animation-delay: 0.7s; }
+        .bubble:nth-child(20) { animation-delay: 1.7s; }
+        .bubble:nth-child(21) { animation-delay: 2.7s; }
+        .bubble:nth-child(22) { animation-delay: 3.7s; }
+        .bubble:nth-child(23) { animation-delay: 0.2s; }
+        .bubble:nth-child(24) { animation-delay: 1.2s; }
+        .bubble:nth-child(25) { animation-delay: 2.2s; }
+        .bubble:nth-child(26) { animation-delay: 3.2s; }
+        .bubble:nth-child(27) { animation-delay: 0.9s; }
+        .bubble:nth-child(28) { animation-delay: 1.9s; }
+        .bubble:nth-child(29) { animation-delay: 2.9s; }
+        .bubble:nth-child(30) { animation-delay: 3.9s; }
+        .bubble:nth-child(31) { animation-delay: 0.4s; }
+        .bubble:nth-child(32) { animation-delay: 1.4s; }
+        .bubble:nth-child(33) { animation-delay: 2.4s; }
+        .bubble:nth-child(34) { animation-delay: 3.4s; }
+        .bubble:nth-child(35) { animation-delay: 0.6s; }
+        .bubble:nth-child(36) { animation-delay: 1.6s; }
+        .bubble:hover {
+            transform: scale(1.18) rotate(-8deg);
+            box-shadow: 0 8px 32px 0 rgba(0,198,255,0.25), 0 0 0 6px #00c6ff44;
+            background: linear-gradient(135deg, #00c6ff 40%, #0072ff 100%);
+            filter: brightness(1.15) saturate(1.2);
+            opacity: 1;
+        }
+        .bubble img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            border-radius: 50%;
+            background: #fff;
+            padding: 6px;
+        }
+        @keyframes float-bubble {
+            0%   { transform: translateY(0) scale(1);}
+            50%  { transform: translateY(-18px) scale(1.07);}
+            100% { transform: translateY(0) scale(1);}
+        }
+        /* Conteúdo principal acima das bolhas */
+        main, section, footer, h1, pre, code {
+            position: relative;
+            z-index: 2;
+        }
+        .nome-canto {
+            position: fixed;
+            bottom: 18px;
+            right: 24px;
+            background: linear-gradient(90deg, #222 0%, #ffffff 100%);
+            color: #111;
+            padding: 10px 22px;
+            border-radius: 16px 0 16px 16px;
+            font-size: 1.05rem;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            z-index: 10;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+        .background-img {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -2;
+            background: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1500&q=80') no-repeat center center;
+            background-size: cover;
+            opacity: 0.35;
+        }
+        .bubbles-bg {
+            z-index: -1;
+        }
+        .bubble::after {
+            content: "";
+            position: absolute;
+            top: -18px;
+            left: -18px;
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            background: radial-gradient(ellipse at center, rgba(0,198,255,0.13) 0%, rgba(0,198,255,0.06) 60%, transparent 100%);
+            opacity: 0.7;
+            filter: blur(10px);
+            transition: opacity 0.4s;
+            animation: smoke-bubble 4s infinite alternate;
+        }
+
+        @keyframes smoke-bubble {
+            0%   { opacity: 0.7; filter: blur(10px);}
+            50%  { opacity: 1; filter: blur(18px);}
+            100% { opacity: 0.7; filter: blur(10px);}
+        }
+    </style>
+</head>
+<body>
+    <div class="background-img"></div>
+    <div class="bubbles-bg">
+        <!-- 30+ bolhas interativas com logos ou letras -->
+        <div class="bubble" style="left:5%; top:8%;">
+            <img src="https://img.icons8.com/color/48/000000/html-5--v1.png" alt="HTML">
+        </div>
+        <div class="bubble" style="left:12%; top:18%;">
+            <img src="https://img.icons8.com/color/48/000000/css3.png" alt="CSS">
+        </div>
+        <div class="bubble" style="left:20%; top:5%;">
+            <img src="https://img.icons8.com/color/48/000000/javascript--v1.png" alt="JS">
+        </div>
+        <div class="bubble" style="left:28%; top:15%;">
+            <img src="https://img.icons8.com/color/48/000000/python--v1.png" alt="Python">
+        </div>
+        <div class="bubble" style="left:35%; top:10%;">
+            <img src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png" alt="Java">
+        </div>
+        <div class="bubble" style="left:42%; top:20%;">
+            <img src="https://img.icons8.com/color/48/000000/html-5--v1.png" alt="HTML">
+        </div>
+        <div class="bubble" style="left:50%; top:8%;">
+            <img src="https://img.icons8.com/color/48/000000/css3.png" alt="CSS">
+        </div>
+        <div class="bubble" style="left:58%; top:18%;">
+            <img src="https://img.icons8.com/color/48/000000/javascript--v1.png" alt="JS">
+        </div>
+        <div class="bubble" style="left:65%; top:5%;">
+            <img src="https://img.icons8.com/color/48/000000/python--v1.png" alt="Python">
+        </div>
+        <div class="bubble" style="left:72%; top:15%;">
+            <img src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png" alt="Java">
+        </div>
+        <div class="bubble" style="left:80%; top:10%;">
+            <img src="https://img.icons8.com/color/48/000000/html-5--v1.png" alt="HTML">
+        </div>
+        <div class="bubble" style="left:88%; top:20%;">
+            <img src="https://img.icons8.com/color/48/000000/css3.png" alt="CSS">
+        </div>
+        <div class="bubble" style="left:95%; top:8%;">
+            <img src="https://img.icons8.com/color/48/000000/javascript--v1.png" alt="JS">
+        </div>
+        <div class="bubble" style="left:10%; top:40%;">
+            <img src="https://img.icons8.com/color/48/000000/python--v1.png" alt="Python">
+        </div>
+        <div class="bubble" style="left:18%; top:30%;">
+            <img src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png" alt="Java">
+        </div>
+        <div class="bubble" style="left:25%; top:38%;">
+            <img src="https://img.icons8.com/color/48/000000/html-5--v1.png" alt="HTML">
+        </div>
+        <div class="bubble" style="left:32%; top:28%;">
+            <img src="https://img.icons8.com/color/48/000000/css3.png" alt="CSS">
+        </div>
+        <div class="bubble" style="left:40%; top:35%;">
+            <img src="https://img.icons8.com/color/48/000000/javascript--v1.png" alt="JS">
+        </div>
+        <div class="bubble" style="left:48%; top:25%;">
+            <img src="https://img.icons8.com/color/48/000000/python--v1.png" alt="Python">
+        </div>
+        <div class="bubble" style="left:55%; top:38%;">
+            <img src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png" alt="Java">
+        </div>
+        <div class="bubble" style="left:62%; top:30%;">
+            <img src="https://img.icons8.com/color/48/000000/html-5--v1.png" alt="HTML">
+        </div>
+        <div class="bubble" style="left:70%; top:40%;">
+            <img src="https://img.icons8.com/color/48/000000/css3.png" alt="CSS">
+        </div>
+        <div class="bubble" style="left:78%; top:28%;">
+            <img src="https://img.icons8.com/color/48/000000/javascript--v1.png" alt="JS">
+        </div>
+        <div class="bubble" style="left:85%; top:35%;">
+            <img src="https://img.icons8.com/color/48/000000/python--v1.png" alt="Python">
+        </div>
+        <div class="bubble" style="left:92%; top:25%;">
+            <img src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png" alt="Java">
+        </div>
+        <div class="bubble" style="left:15%; top:60%;">
+            <img src="https://img.icons8.com/color/48/000000/html-5--v1.png" alt="HTML">
+        </div>
+        <div class="bubble" style="left:22%; top:70%;">
+            <img src="https://img.icons8.com/color/48/000000/css3.png" alt="CSS">
+        </div>
+        <div class="bubble" style="left:30%; top:65%;">
+            <img src="https://img.icons8.com/color/48/000000/javascript--v1.png" alt="JS">
+        </div>
+        <div class="bubble" style="left:38%; top:75%;">
+            <img src="https://img.icons8.com/color/48/000000/python--v1.png" alt="Python">
+        </div>
+        <div class="bubble" style="left:45%; top:60%;">
+            <img src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png" alt="Java">
+        </div>
+        <div class="bubble" style="left:52%; top:70%;">
+            <img src="https://img.icons8.com/color/48/000000/html-5--v1.png" alt="HTML">
+        </div>
+        <div class="bubble" style="left:60%; top:65%;">
+            <img src="https://img.icons8.com/color/48/000000/css3.png" alt="CSS">
+        </div>
+        <div class="bubble" style="left:68%; top:75%;">
+            <img src="https://img.icons8.com/color/48/000000/javascript--v1.png" alt="JS">
+        </div>
+        <div class="bubble" style="left:75%; top:60%;">
+            <img src="https://img.icons8.com/color/48/000000/python--v1.png" alt="Python">
+        </div>
+        <div class="bubble" style="left:82%; top:70%;">
+            <img src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png" alt="Java">
+        </div>
+        <div class="bubble" style="left:90%; top:65%;">
+            <img src="https://img.icons8.com/color/48/000000/html-5--v1.png" alt="HTML">
+        </div>
+    </div>
+    <!-- Nome fixo no canto da tela -->
+    <div class="nome-canto">Wallisson Elizeu Candido Da Silva</div>
+    
+
+    <!-- Destaque central -->
+    <div class="destaque-central">
+        <h1>Wallisson Elizeu Candido Da Silva</h1>
+        <p>
+            Eu sou um programador iniciante, estou aprendendo a programar em python,javascript,html e css.<br>
+            Eu gosto de programar e estou sempre buscando melhorar minhas habilidades.<br>
+            Eu também gosto de aprender sobre novas tecnologias e tendências na área de programação.
+        </p>
+    </div>
+
+    <footer>
+        <!-- Seus contatos aqui -->
+        <a href="https://instagram.com/wzinn_v7" target="_blank" class="botao-contato instagram">
+            <span>Instagram</span>
+        </a>
+        <a href="nelizeu070@email.com" class="botao-contato email">
+            <span>E-mail</span>
+        </a>
+        <a href="https://wa.me/55991724618" target="_blank" class="botao-contato whatsapp">
+            <span>Contato</span>
+        </a>
+    </footer>
+    <style>
+        /* Centraliza o rodapé e os botões de contato */
+        footer {
+            border: none !important;
+            box-shadow: none !important;
+            background: transparent !important;
+            text-align: center;
+            margin-top: 32px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .botao-contato,
+        .botao-contato.instagram,
+        .botao-contato.email,
+        .botao-contato.whatsapp {
+            display: inline-block;
+            margin: 0 8px 0 0;
+            padding: 10px 28px;
+            border-radius: 24px;
+            font-weight: bold;
+            font-size: 1rem;
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(90deg, #111 0%, #555 100%);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+            transition: background 0.3s, color 0.2s, transform 0.2s;
+            border: none;
+            outline: none;
+            position: relative;
+        }
+        .botao-contato:hover,
+        .botao-contato.instagram:hover,
+        .botao-contato.email:hover,
+        .botao-contato.whatsapp:hover {
+            background: linear-gradient(90deg, #555 0%, #111 100%);
+            color: #fff;
+            transform: translateY(-2px) scale(1.05);
+            text-decoration: none;
+        }
+        .botao-contato.instagram {
+            background: linear-gradient(90deg, #111 0%, #555 100%);
+        }
+        .botao-contato.instagram:hover {
+            background: linear-gradient(90deg, #555 0%, #111 100%);
+        }
+        .botao-contato.email {
+            background: linear-gradient(90deg, #555 0%, #111 100%);
+        }
+        .botao-contato.email:hover {
+            background: linear-gradient(90deg, #111 0%, #555 100%);
+        }
+    </style>
+
+    <script>
+        // Exemplo de interação extra: clique na bolha mostra o nome da linguagem
+        document.querySelectorAll('.bubble').forEach(bubble => {
+            bubble.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const alt = this.querySelector('img').alt;
+                alert('Linguagem: ' + alt);
+            });
+        });
+    </script>
+    <style>
+        /* Centraliza o conteúdo do destaque central */
+        .destaque-central {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255,255,255,0.92);
+            color: #232526;
+            padding: 38px 32px 28px 32px;
+            border-radius: 22px;
+            box-shadow: 0 8px 48px rgba(0,0,0,0.18);
+            text-align: center;
+            z-index: 20;
+            max-width: 90vw;
+            min-width: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .destaque-central h1 {
+            margin: 0 0 18px 0;
+            font-size: 2.1rem;
+            color: #000;
+            letter-spacing: 1.5px;
+            font-weight: bold;
+            text-shadow: 0 2px 12px #00c6ff22;
+        }
+        .destaque-central p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            margin: 0;
+            display: block;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .destaque-central {
+                padding: 18px 6vw;
+                min-width: unset;
+            }
+            .destaque-central h1 {
+                font-size: 1.2rem;
+            }
+            .destaque-central p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</body>
+</html>

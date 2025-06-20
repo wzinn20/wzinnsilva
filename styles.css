@@ -1,0 +1,120 @@
+/* Estilos Gerais */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(120deg, #232526 0%, #f9fcfc 100%);
+    color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+header, footer {
+    background: rgba(0, 114, 255, 0.9);
+    color: #fff;
+    text-align: center;
+    padding: 24px 0 12px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+main {
+    max-width: 800px;
+    margin: 48px auto 32px auto;
+    background: rgba(34, 34, 34, 0.92);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    padding: 36px 28px;
+    position: relative;
+    z-index: 1;
+}
+
+section {
+    margin-bottom: 36px;
+}
+
+h1, h2 {
+    color: #00c6ff;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+h2 {
+    border-bottom: 2px solid #00c6ff;
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+}
+
+/* Animação das bolhas já existente */
+.bubbles-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.bubble {
+    position: absolute;
+    width: 80px; height: 80px;
+    opacity: 0.85;
+    /* Removido animation para bolhas paradas */
+}
+
+.bubble img {
+    width: 100%; 
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    background: linear-gradient(135deg, #00c6ff 0%, #232526 100%);
+    padding: 10px;
+    object-fit: contain;
+}
+
+.bubble-html img    { background: #2196f3; }   /* Azul */
+.bubble-css img     { background: #2196f3; }
+.bubble-js img      { background: #2196f3; }
+.bubble-python img  { background: #2196f3; }
+.bubble-java img    { background: #2196f3; }
+
+/* Galeria */
+section div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+section div img,
+section div video {
+    transition: transform 0.4s cubic-bezier(.25,.8,.25,1), box-shadow 0.4s;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    border-radius: 10px;
+    background: #222;
+}
+
+section div img:hover,
+section div video:hover {
+    transform: scale(1.08) rotate(-2deg);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+}
+
+/* Fade-in para conteúdo */
+main, footer {
+    animation: fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(40px);}
+    to   { opacity: 1; transform: translateY(0);}
+}
+
+/* Responsividade */
+@media (max-width: 700px) {
+    main {
+        padding: 16px 4px;
+    }
+    section div {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
