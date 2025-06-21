@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sua Página</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="style.css">
     <style>
         html, body {
             height: 100%;
@@ -17,6 +15,8 @@
             min-height: 100vh;
             width: 100vw;
             overflow-x: hidden;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f8f9fa;
         }
         .background-img {
             position: fixed;
@@ -24,96 +24,60 @@
             z-index: -2;
             background: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1500&q=80') no-repeat center center;
             background-size: cover;
-            opacity: 0.35;
+            opacity: 0.25;
         }
         .bubbles-bg {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: -1;
-            overflow: hidden;
             pointer-events: none;
         }
         .bubble {
             position: absolute;
-            width: 6vw; min-width: 24px; max-width: 60px;
-            height: 6vw; min-height: 24px; max-height: 60px;
+            width: 48px; height: 48px;
             opacity: 0.7;
             border-radius: 50%;
-            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            background: #111 !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.25) !important;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             pointer-events: auto;
-            transition:
-                transform 0.3s cubic-bezier(.25,.8,.25,1),
-                box-shadow 0.3s,
-                background 0.3s,
-                filter 0.3s,
-                left 0.4s cubic-bezier(.25,.8,.25,1),
-                top 0.4s cubic-bezier(.25,.8,.25,1);
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s, filter 0.3s;
             user-select: none;
-            animation: float-bubble 4s ease-in-out infinite;
+            animation: bubbleMove 6s ease-in-out infinite alternate;
         }
         .bubble img {
             width: 60%; height: 60%;
             object-fit: contain;
             border-radius: 50%;
-            background: #fff;
-            padding: 6%;
+            background: #111 !important;
+            filter: brightness(1.2);
+            padding: 4%;
         }
-        .bubble:hover,
-        .bubble.touch-ativo {
-            transform: scale(1.18) rotate(-8deg) translateY(-18%) translateX(10%);
-            box-shadow: 0 8px 32px 0 rgba(0,198,255,0.25), 0 0 0 6px #00c6ff44;
-            background: linear-gradient(135deg, #00c6ff 40%, #0072ff 100%);
-            filter: brightness(1.15) saturate(1.2);
+        .bubble:hover {
+            transform: scale(1.13) rotate(-8deg);
+            box-shadow: 0 6px 18px 0 rgba(0,198,255,0.18);
+            background: #e3f2fd;
+            filter: brightness(1.1);
             opacity: 1;
             z-index: 2;
         }
-        @keyframes float-bubble {
-            0%   { transform: translateY(0) scale(1);}
-            50%  { transform: translateY(-18%) scale(1.07);}
-            100% { transform: translateY(0) scale(1);}
-        }
-        .bubble::after {
-            content: "";
-            position: absolute;
-            top: -18%;
-            left: -18%;
-            width: 136%;
-            height: 136%;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1;
-            background: radial-gradient(ellipse at center, rgba(0,198,255,0.13) 0%, rgba(0,198,255,0.06) 60%, transparent 100%);
-            opacity: 0.7;
-            filter: blur(10px);
-            transition: opacity 0.4s;
-            animation: smoke-bubble 4s infinite alternate;
-        }
-        @keyframes smoke-bubble {
-            0%   { opacity: 0.7; filter: blur(10px);}
-            50%  { opacity: 1; filter: blur(18px);}
-            100% { opacity: 0.7; filter: blur(10px);}
-        }
         .nome-canto {
             position: fixed;
-            bottom: 2vw;
-            right: 3vw;
-            background: linear-gradient(90deg, #222 0%, #ffffff 100%);
+            bottom: 18px;
+            right: 24px;
+            background: #fff;
             color: #111;
-            padding: 1em 2em;
+            padding: 10px 22px;
             border-radius: 16px 0 16px 16px;
-            font-size: clamp(0.85rem, 2vw, 1.05rem);
+            font-size: 1.05rem;
             font-family: 'Segoe UI', Arial, sans-serif;
             z-index: 10;
             box-shadow: 0 2px 12px rgba(0,0,0,0.12);
             letter-spacing: 1px;
             font-weight: bold;
-            max-width: 90vw;
-            word-break: break-word;
         }
         .destaque-central {
             position: fixed;
@@ -122,60 +86,54 @@
             transform: translate(-50%, -50%);
             background: rgba(255,255,255,0.92);
             color: #232526;
-            padding: 2.5em 2em 2em 2em;
+            padding: 38px 32px 28px 32px;
             border-radius: 22px;
             box-shadow: 0 8px 48px rgba(0,0,0,0.18);
             text-align: center;
             z-index: 20;
-            max-width: 95vw;
-            min-width: 220px;
+            max-width: 90vw;
+            min-width: 320px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
         .destaque-central h1 {
-            margin: 0 0 1em 0;
-            font-size: clamp(1.1rem, 5vw, 2.1rem);
+            margin: 0 0 18px 0;
+            font-size: 2.1rem;
             color: #000;
             letter-spacing: 1.5px;
             font-weight: bold;
             text-shadow: 0 2px 12px #00c6ff22;
-            word-break: break-word;
         }
         .destaque-central p {
-            font-size: clamp(0.95rem, 3vw, 1.15rem);
+            font-size: 1.15rem;
             line-height: 1.7;
             margin: 0;
             display: block;
             text-align: center;
-            word-break: break-word;
         }
         footer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            background: transparent;
-            box-shadow: none;
-            z-index: 50;
+            border: none !important;
+            box-shadow: none !important;
+            background: transparent !important;
+            text-align: center;
+            margin-top: 32px;
+            width: 100%;
             display: flex;
             justify-content: center;
-            gap: 1em;
+            gap: 12px;
             flex-wrap: wrap;
-            padding: 0.7em 0 0.7em 0;
-            margin: 0;
+            z-index: 5;
+            position: relative;
         }
-        .botao-contato,
-        .botao-contato.instagram,
-        .botao-contato.email,
-        .botao-contato.whatsapp {
+        .botao-contato {
             display: inline-block;
             margin: 0 8px 0 0;
-            padding: 0.7em 2em;
+            padding: 10px 28px;
             border-radius: 24px;
             font-weight: bold;
-            font-size: clamp(0.9rem, 2vw, 1rem);
+            font-size: 1rem;
             text-decoration: none;
             color: #fff;
             background: linear-gradient(90deg, #111 0%, #555 100%);
@@ -184,174 +142,247 @@
             border: none;
             outline: none;
             position: relative;
-            min-width: 120px;
-            text-align: center;
         }
-        .botao-contato:hover,
-        .botao-contato.instagram:hover,
-        .botao-contato.email:hover,
-        .botao-contato.whatsapp:hover {
+        .botao-contato:hover {
             background: linear-gradient(90deg, #555 0%, #111 100%);
             color: #fff;
             transform: translateY(-2px) scale(1.05);
             text-decoration: none;
         }
-        .painel-gmail {
-            position: relative;
+        /* Adicione este CSS ao seu <style> para animar o formulário de perguntas */
+        #form-pergunta-bg {
+            transition: opacity 0.3s;
+            opacity: 0;
+            pointer-events: none;
         }
-        .painel-email {
-            display: none;
-            position: absolute;
-            left: 50%;
-            top: 110%;
-            transform: translateX(-50%);
-            background: #fff;
-            color: #222;
-            padding: 14px 22px;
-            border-radius: 14px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.13);
-            font-size: 1rem;
-            min-width: 180px;
-            z-index: 100;
-            text-align: center;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            font-weight: 500;
-            white-space: nowrap;
+        #form-pergunta-bg.ativo {
+            opacity: 1;
+            pointer-events: auto;
         }
-        .painel-gmail:hover .painel-email,
-        .painel-gmail:focus-within .painel-email {
-            display: block;
+        #form-pergunta {
+            animation: animarFormPergunta 0.4s cubic-bezier(.25,.8,.25,1);
         }
-        .painel-gmail:hover,
-        .painel-gmail:focus-within {
-            z-index: 101;
+        @keyframes animarFormPergunta {
+            0% {
+                transform: scale(0.85) translateY(40px);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes bubbleMove {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+            30% {
+                transform: translateY(-12px) scale(1.07) rotate(-3deg);
+            }
+            60% {
+                transform: translateY(8px) scale(0.96) rotate(2deg);
+            }
+            100% {
+                transform: translateY(0) scale(1);
+            }
         }
         @media (max-width: 900px) {
             .destaque-central {
                 max-width: 98vw;
                 min-width: unset;
-                padding: 1.2em 4vw;
+                padding: 14px 2vw;
+            }
+            .destaque-central h1 {
+                font-size: 1.2rem;
+            }
+            .destaque-central p {
+                font-size: 0.98rem;
             }
             .bubble {
-                min-width: 18px; min-height: 18px;
-                max-width: 40px; max-height: 40px;
+                width: 32px;
+                height: 32px;
+            }
+            .bubble img {
+                width: 18px;
+                height: 18px;
+                padding: 2px;
+            }
+            .nome-canto {
+                font-size: 0.9rem;
+                padding: 7px 12px;
+                right: 8px;
+                bottom: 8px;
+            }
+            #form-pergunta {
+                width: 95vw !important;
+                min-width: unset !important;
+                padding: 18px 6vw 14px 6vw !important;
             }
         }
         @media (max-width: 600px) {
             .destaque-central {
-                padding: 0.7em 2vw;
+                padding: 8px 1vw;
                 min-width: unset;
             }
-            .nome-canto {
-                font-size: 0.85rem;
-                padding: 0.5em 1em;
-                right: 2vw;
-                bottom: 2vw;
+            .destaque-central h1 {
+                font-size: 1rem;
+            }
+            .destaque-central p {
+                font-size: 0.92rem;
             }
             .bubble {
-                min-width: 12px; min-height: 12px;
-                max-width: 28px; max-height: 28px;
+                width: 22px;
+                height: 22px;
             }
             .bubble img {
-                padding: 2%;
+                width: 12px;
+                height: 12px;
+                padding: 1px;
+            }
+            .nome-canto {
+                font-size: 0.75rem;
+                padding: 5px 7px;
+                right: 4px;
+                bottom: 4px;
+            }
+            #form-pergunta {
+                width: 98vw !important;
+                min-width: unset !important;
+                padding: 10px 2vw 10px 2vw !important;
+            }
+            #form-pergunta input,
+            #form-pergunta textarea {
+                font-size: 0.95rem !important;
+                padding: 8px 8px !important;
+            }
+            #form-pergunta h2 {
+                font-size: 1rem !important;
+            }
+            .botao-contato {
+                width: 98vw;
+                max-width: 320px;
+                margin: 0 auto;
+                padding: 10px 0;
+                font-size: 1rem;
             }
             footer {
                 flex-direction: column;
-                gap: 0.5em;
-                margin-top: 1em;
-            }
-            .botao-contato {
-                width: 90vw;
-                max-width: 320px;
-                margin: 0 auto;
-                padding: 0.7em 0;
-                font-size: 1rem;
+                gap: 8px;
+                margin-top: 12px;
             }
         }
-        .painel-instagram, .painel-gmail, .painel-whatsapp {
-            position: relative;
+        /* Contraste suficiente nos campos do formulário e botões */
+        #form-pergunta input,
+        #form-pergunta textarea {
+            background: #23283a !important;
+            color: #fff !important;
+            border: 1.5px solid #00c6ff !important;
         }
-        .painel-info {
-            display: none;
-            position: absolute;
-            left: 50%;
-            top: 110%;
-            transform: translateX(-50%);
-            background: #fff;
-            color: #222;
-            padding: 14px 22px;
-            border-radius: 14px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.13);
-            font-size: 1rem;
-            min-width: 180px;
-            z-index: 100;
-            text-align: center;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            font-weight: 500;
-            white-space: nowrap;
+        #form-pergunta input:focus,
+        #form-pergunta textarea:focus {
+            outline: 2px solid #00c6ff;
+            background: #1a1e29 !important;
+            box-shadow: 0 0 0 3px #00c6ff44;
+            transition: box-shadow 0.2s;
         }
-        .painel-instagram:hover .painel-info,
-        .painel-instagram:focus-within .painel-info,
-        .painel-gmail:hover .painel-info,
-        .painel-gmail:focus-within .painel-info,
-        .painel-whatsapp:hover .painel-info,
-        .painel-whatsapp:focus-within .painel-info {
-            display: block;
+        #form-pergunta button[type="submit"] {
+            background: linear-gradient(90deg,#0072ff 0%,#00c6ff 100%);
+            color: #fff;
+            font-weight: bold;
+            border: none;
         }
-        .painel-instagram:hover,
-        .painel-instagram:focus-within,
-        .painel-gmail:hover,
-        .painel-gmail:focus-within,
-        .painel-whatsapp:hover,
-        .painel-whatsapp:focus-within {
-            z-index: 101;
+        #form-pergunta button[type="submit"]:focus {
+            outline: 2px solid #fff;
+            background: #0072ff;
+        }
+        /* Contraste para botão fechar */
+        #cancelar-pergunta:focus {
+            outline: 2px solid #00c6ff;
+            background: #23283a;
+        }
+        /* Animação fadeIn para mensagem de sucesso */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px);}
+            to   { opacity: 1; transform: translateY(0);}
+        }
+        #form-sucesso {
+            animation: fadeIn 0.4s;
+        }
+        #btn-topo:hover {
+            background: #0072ff;
+            transform: scale(1.1);
+        }
+        footer .botao-contato img {
+            margin-bottom: -4px;
         }
     </style>
 </head>
 <body>
     <div class="background-img"></div>
     <div class="bubbles-bg">
-        <!-- 30+ bolhas interativas com logos ou letras -->
-        <div class="bubble" style="left:5%; top:8%;"><img src="https://img.icons8.com/color/48/000000/html-5--v1.png" alt="HTML"></div>
-        <div class="bubble" style="left:12%; top:18%;"><img src="https://img.icons8.com/color/48/000000/css3.png" alt="CSS"></div>
-        <div class="bubble" style="left:20%; top:5%;"><img src="https://img.icons8.com/color/48/000000/javascript--v1.png" alt="JS"></div>
-        <div class="bubble" style="left:28%; top:15%;"><img src="https://img.icons8.com/color/48/000000/python--v1.png" alt="Python"></div>
-        <div class="bubble" style="left:35%; top:10%;"><img src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png" alt="Java"></div>
-        <div class="bubble" style="left:42%; top:20%;"><img src="https://img.icons8.com/color/48/000000/html-5--v1.png" alt="HTML"></div>
-        <div class="bubble" style="left:50%; top:8%;"><img src="https://img.icons8.com/color/48/000000/css3.png" alt="CSS"></div>
-        <div class="bubble" style="left:58%; top:18%;"><img src="https://img.icons8.com/color/48/000000/javascript--v1.png" alt="JS"></div>
-        <div class="bubble" style="left:65%; top:5%;"><img src="https://img.icons8.com/color/48/000000/python--v1.png" alt="Python"></div>
-        <div class="bubble" style="left:72%; top:15%;"><img src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png" alt="Java"></div>
-        <div class="bubble" style="left:80%; top:10%;"><img src="https://img.icons8.com/color/48/000000/html-5--v1.png" alt="HTML"></div>
-        <div class="bubble" style="left:88%; top:20%;"><img src="https://img.icons8.com/color/48/000000/css3.png" alt="CSS"></div>
-        <div class="bubble" style="left:95%; top:8%;"><img src="https://img.icons8.com/color/48/000000/javascript--v1.png" alt="JS"></div>
-        <div class="bubble" style="left:10%; top:40%;"><img src="https://img.icons8.com/color/48/000000/python--v1.png" alt="Python"></div>
-        <div class="bubble" style="left:18%; top:30%;"><img src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png" alt="Java"></div>
-        <div class="bubble" style="left:25%; top:38%;"><img src="https://img.icons8.com/color/48/000000/html-5--v1.png" alt="HTML"></div>
-        <div class="bubble" style="left:32%; top:28%;"><img src="https://img.icons8.com/color/48/000000/css3.png" alt="CSS"></div>
-        <div class="bubble" style="left:40%; top:35%;"><img src="https://img.icons8.com/color/48/000000/javascript--v1.png" alt="JS"></div>
-        <div class="bubble" style="left:48%; top:25%;"><img src="https://img.icons8.com/color/48/000000/python--v1.png" alt="Python"></div>
-        <div class="bubble" style="left:55%; top:38%;"><img src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png" alt="Java"></div>
-        <div class="bubble" style="left:62%; top:30%;"><img src="https://img.icons8.com/color/48/000000/html-5--v1.png" alt="HTML"></div>
-        <div class="bubble" style="left:70%; top:40%;"><img src="https://img.icons8.com/color/48/000000/css3.png" alt="CSS"></div>
-        <div class="bubble" style="left:78%; top:28%;"><img src="https://img.icons8.com/color/48/000000/javascript--v1.png" alt="JS"></div>
-        <div class="bubble" style="left:85%; top:35%;"><img src="https://img.icons8.com/color/48/000000/python--v1.png" alt="Python"></div>
-        <div class="bubble" style="left:92%; top:25%;"><img src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png" alt="Java"></div>
-        <div class="bubble" style="left:15%; top:60%;"><img src="https://img.icons8.com/color/48/000000/html-5--v1.png" alt="HTML"></div>
-        <div class="bubble" style="left:22%; top:70%;"><img src="https://img.icons8.com/color/48/000000/css3.png" alt="CSS"></div>
-        <div class="bubble" style="left:30%; top:65%;"><img src="https://img.icons8.com/color/48/000000/javascript--v1.png" alt="JS"></div>
-        <div class="bubble" style="left:38%; top:75%;"><img src="https://img.icons8.com/color/48/000000/python--v1.png" alt="Python"></div>
-        <div class="bubble" style="left:45%; top:60%;"><img src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png" alt="Java"></div>
-        <div class="bubble" style="left:52%; top:70%;"><img src="https://img.icons8.com/color/48/000000/html-5--v1.png" alt="HTML"></div>
-        <div class="bubble" style="left:60%; top:65%;"><img src="https://img.icons8.com/color/48/000000/css3.png" alt="CSS"></div>
-        <div class="bubble" style="left:68%; top:75%;"><img src="https://img.icons8.com/color/48/000000/javascript--v1.png" alt="JS"></div>
-        <div class="bubble" style="left:75%; top:60%;"><img src="https://img.icons8.com/color/48/000000/python--v1.png" alt="Python"></div>
-        <div class="bubble" style="left:82%; top:70%;"><img src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png" alt="Java"></div>
-        <div class="bubble" style="left:90%; top:65%;"><img src="https://img.icons8.com/color/48/000000/html-5--v1.png" alt="HTML"></div>
+        <!-- Bolhas originais -->
+        <div class="bubble" style="left:5%; top:8%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/html-5.png" alt="Logo HTML5 branco"></div>
+        <div class="bubble" style="left:12%; top:18%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/css3.png" alt="Logo CSS3 branco"></div>
+        <div class="bubble" style="left:20%; top:5%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/javascript-logo.png" alt="Logo JavaScript branco"></div>
+        <div class="bubble" style="left:28%; top:15%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/python.png" alt="Logo Python branco"></div>
+        <div class="bubble" style="left:35%; top:10%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/java-coffee-cup-logo.png" alt="Logo Java branco"></div>
+        <div class="bubble" style="left:42%; top:20%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/html-5.png" alt="Logo HTML5 branco"></div>
+        <div class="bubble" style="left:50%; top:8%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/css3.png" alt="Logo CSS3 branco"></div>
+        <div class="bubble" style="left:58%; top:18%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/javascript-logo.png" alt="Logo JavaScript branco"></div>
+        <div class="bubble" style="left:65%; top:5%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/python.png" alt="Logo Python branco"></div>
+        <div class="bubble" style="left:72%; top:15%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/java-coffee-cup-logo.png" alt="Logo Java branco"></div>
+        <div class="bubble" style="left:80%; top:10%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/html-5.png" alt="Logo HTML5 branco"></div>
+        <div class="bubble" style="left:88%; top:20%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/css3.png" alt="Logo CSS3 branco"></div>
+        <div class="bubble" style="left:95%; top:8%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/javascript-logo.png" alt="Logo JavaScript branco"></div>
+        <!-- 40 novas bolhas com ícones brancos (ios-filled) -->
+        <div class="bubble" style="left:3%; top:30%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/html-5.png" alt="Logo HTML5 branco"></div>
+        <div class="bubble" style="left:8%; top:40%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/css3.png" alt="Logo CSS3 branco"></div>
+        <div class="bubble" style="left:15%; top:32%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/javascript-logo.png" alt="Logo JavaScript branco"></div>
+        <div class="bubble" style="left:22%; top:38%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/python.png" alt="Logo Python branco"></div>
+        <div class="bubble" style="left:29%; top:28%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/java-coffee-cup-logo.png" alt="Logo Java branco"></div>
+        <div class="bubble" style="left:36%; top:36%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/html-5.png" alt="Logo HTML5 branco"></div>
+        <div class="bubble" style="left:43%; top:30%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/css3.png" alt="Logo CSS3 branco"></div>
+        <div class="bubble" style="left:50%; top:38%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/javascript-logo.png" alt="Logo JavaScript branco"></div>
+        <div class="bubble" style="left:57%; top:32%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/python.png" alt="Logo Python branco"></div>
+        <div class="bubble" style="left:64%; top:40%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/java-coffee-cup-logo.png" alt="Logo Java branco"></div>
+        <div class="bubble" style="left:71%; top:28%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/html-5.png" alt="Logo HTML5 branco"></div>
+        <div class="bubble" style="left:78%; top:36%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/css3.png" alt="Logo CSS3 branco"></div>
+        <div class="bubble" style="left:85%; top:30%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/javascript-logo.png" alt="Logo JavaScript branco"></div>
+        <div class="bubble" style="left:92%; top:38%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/python.png" alt="Logo Python branco"></div>
+        <div class="bubble" style="left:6%; top:60%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/java-coffee-cup-logo.png" alt="Logo Java branco"></div>
+        <div class="bubble" style="left:13%; top:70%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/html-5.png" alt="Logo HTML5 branco"></div>
+        <div class="bubble" style="left:20%; top:65%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/css3.png" alt="Logo CSS3 branco"></div>
+        <div class="bubble" style="left:27%; top:75%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/javascript-logo.png" alt="Logo JavaScript branco"></div>
+        <div class="bubble" style="left:34%; top:60%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/python.png" alt="Logo Python branco"></div>
+        <div class="bubble" style="left:41%; top:70%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/java-coffee-cup-logo.png" alt="Logo Java branco"></div>
+        <div class="bubble" style="left:48%; top:65%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/html-5.png" alt="Logo HTML5 branco"></div>
+        <div class="bubble" style="left:55%; top:75%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/css3.png" alt="Logo CSS3 branco"></div>
+        <div class="bubble" style="left:62%; top:60%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/javascript-logo.png" alt="Logo JavaScript branco"></div>
+        <div class="bubble" style="left:69%; top:70%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/python.png" alt="Logo Python branco"></div>
+        <div class="bubble" style="left:76%; top:65%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/java-coffee-cup-logo.png" alt="Logo Java branco"></div>
+        <div class="bubble" style="left:83%; top:75%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/html-5.png" alt="Logo HTML5 branco"></div>
+        <div class="bubble" style="left:90%; top:60%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/css3.png" alt="Logo CSS3 branco"></div>
+        <div class="bubble" style="left:10%; top:50%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/javascript-logo.png" alt="Logo JavaScript branco"></div>
+        <div class="bubble" style="left:18%; top:55%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/python.png" alt="Logo Python branco"></div>
+        <div class="bubble" style="left:26%; top:50%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/java-coffee-cup-logo.png" alt="Logo Java branco"></div>
+        <div class="bubble" style="left:34%; top:55%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/html-5.png" alt="Logo HTML5 branco"></div>
+        <div class="bubble" style="left:42%; top:50%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/css3.png" alt="Logo CSS3 branco"></div>
+        <div class="bubble" style="left:50%; top:55%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/javascript-logo.png" alt="Logo JavaScript branco"></div>
+        <div class="bubble" style="left:58%; top:50%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/python.png" alt="Logo Python branco"></div>
+        <div class="bubble" style="left:66%; top:55%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/java-coffee-cup-logo.png" alt="Logo Java branco"></div>
+        <div class="bubble" style="left:74%; top:50%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/html-5.png" alt="Logo HTML5 branco"></div>
+        <div class="bubble" style="left:82%; top:55%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/css3.png" alt="Logo CSS3 branco"></div>
+        <div class="bubble" style="left:90%; top:50%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/javascript-logo.png" alt="Logo JavaScript branco"></div>
+        <div class="bubble" style="left:15%; top:80%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/python.png" alt="Logo Python branco"></div>
+        <div class="bubble" style="left:25%; top:85%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/java-coffee-cup-logo.png" alt="Logo Java branco"></div>
+        <div class="bubble" style="left:35%; top:80%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/html-5.png" alt="Logo HTML5 branco"></div>
+        <div class="bubble" style="left:45%; top:85%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/css3.png" alt="Logo CSS3 branco"></div>
+        <div class="bubble" style="left:55%; top:80%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/javascript-logo.png" alt="Logo JavaScript branco"></div>
+        <div class="bubble" style="left:65%; top:85%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/python.png" alt="Logo Python branco"></div>
+        <div class="bubble" style="left:75%; top:80%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/java-coffee-cup-logo.png" alt="Logo Java branco"></div>
+        <div class="bubble" style="left:85%; top:85%;"><img src="https://img.icons8.com/ios-filled/50/ffffff/html-5.png" alt="Logo HTML5 branco"></div>
     </div>
-    <!-- Nome fixo no canto da tela -->
     <div class="nome-canto">Wallisson Elizeu Candido Da Silva</div>
-    <!-- Destaque central -->
     <div class="destaque-central">
         <h1>Wallisson Elizeu Candido Da Silva</h1>
         <p>
@@ -360,70 +391,117 @@
             Eu também gosto de aprender sobre novas tecnologias e tendências na área de programação.
         </p>
     </div>
-    <footer>
-        <a href="https://instagram.com/wzinn_v7" target="_blank" class="botao-contato instagram painel-instagram">
-            <span>Instagram</span>
-            <div class="painel-info">
-                <strong>Instagram</strong><br>
-                @wzinn_v7
-            </div>
-        </a>
-        <a href="mailto:nelizeu070@email.com" class="botao-contato email painel-gmail">
-            <span>E-mail</span>
-            <div class="painel-info">
-                <strong>Contato por E-mail</strong><br>
-                nelizeu070@email.com
-            </div>
-        </a>
-        <a href="https://wa.me/+5587991724618" target="_blank" class="botao-contato whatsapp painel-whatsapp">
-            <span>Contato</span>
-            <div class="painel-info">
-                <strong>WhatsApp</strong><br>
-                (+55) 87 991724-618
-            </div>
-        </a>
+    <!-- Mensagem de sucesso estilizada -->
+    <div id="form-sucesso" style="display:none;position:fixed;top:30px;left:50%;transform:translateX(-50%);background:#23283a;color:#fff;padding:18px 32px;border-radius:12px;box-shadow:0 4px 24px #0008;z-index:2000;font-size:1.1rem;animation:fadeIn 0.4s;">
+        Sua pergunta foi enviada! Obrigado pelo contato.
+    </div>
+
+    <!-- Botão de voltar ao topo -->
+    <button id="btn-topo" title="Voltar ao topo" style="display:none;position:fixed;bottom:32px;right:24px;z-index:1500;background:#111;color:#fff;border:none;border-radius:50%;width:48px;height:48px;box-shadow:0 2px 12px #0008;font-size:2rem;cursor:pointer;transition:background 0.2s,transform 0.2s;">
+        ↑
+    </button>
+
+    <!-- Links sociais com ícones -->
+    <footer style="width:100%;background:#181c24;color:#fff;padding:32px 0 18px 0;margin-top:48px;display:flex;flex-direction:column;align-items:center;gap:18px;box-shadow:0 -2px 24px #0002;position:relative;">
+        <div style="display:flex;gap:18px;flex-wrap:wrap;justify-content:center;">
+            <button class="botao-contato" id="btn-pergunta" type="button">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/help.png" alt="Pergunta" style="vertical-align:middle;margin-right:8px;">Fazer Pergunta
+            </button>
+            <a href="https://instagram.com/wzinn_v7" target="_blank" class="botao-contato" aria-label="Instagram">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new.png" alt="Instagram" style="vertical-align:middle;margin-right:8px;">Instagram
+            </a>
+            <a href="mailto:nelizeu070@gmail.com" class="botao-contato" aria-label="E-mail">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/gmail-new.png" alt="E-mail" style="vertical-align:middle;margin-right:8px;">E-mail
+            </a>
+            <a href="https://wa.me/55991724618" target="_blank" class="botao-contato" aria-label="WhatsApp">
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/whatsapp.png" alt="WhatsApp" style="vertical-align:middle;margin-right:8px;">WhatsApp
+            </a>
+        </div>
+        <div style="font-size:0.98rem;opacity:0.9;text-align:left;position:fixed;left:18px;bottom:10px;color:#111;font-weight:bold;z-index:1000;background:#fff;padding:8px 18px;border-radius:12px 12px 12px 0;box-shadow:0 2px 12px rgba(0,0,0,0.10);">
+            &copy; 2025 Wallisson Elizeu Candido Da Silva. Todos os direitos reservados.
+        </div>
     </footer>
+
+    <div id="form-pergunta-bg" style="display:none; position:fixed; top:0;left:0;width:100vw;height:100vh;z-index:999;background:rgba(0,0,0,0.55);justify-content:center;align-items:center;">
+        <form id="form-pergunta" style="background:#181c24;padding:28px 22px 20px 22px;border-radius:18px;box-shadow:0 8px 32px #0008;max-width:92vw;width:340px;display:flex;flex-direction:column;gap:16px;position:relative;">
+            <button type="button" id="cancelar-pergunta" title="Fechar" style="position:absolute;top:10px;right:12px;background:none;border:none;font-size:1.4rem;color:#fff;cursor:pointer;line-height:1;">×</button>
+            <h2 style="margin:0 0 8px 0;font-size:1.25rem; color:#fff; letter-spacing:1px; text-align:center;">Envie sua pergunta</h2>
+            <div id="form-erro" style="display:none;color:#ff5252;background:#23283a;padding:8px 12px;border-radius:7px;font-size:0.98rem;text-align:center;animation:fadeIn 0.3s;"></div>
+            <input type="text" id="nome" placeholder="Seu nome" required style="padding:10px 12px;border-radius:8px;border:none;background:#23283a;color:#fff;font-size:1rem;outline:none;">
+            <input type="email" id="email" placeholder="Seu e-mail" required style="padding:10px 12px;border-radius:8px;border:none;background:#23283a;color:#fff;font-size:1rem;outline:none;">
+            <textarea id="pergunta" placeholder="Digite sua pergunta" required style="padding:10px 12px;border-radius:8px;border:none;background:#23283a;color:#fff;font-size:1rem;min-height:70px;outline:none;resize:vertical;"></textarea>
+            <button type="submit" style="padding:10px 0;border-radius:8px;border:none;background:linear-gradient(90deg,#0072ff 0%,#00c6ff 100%);color:#fff;font-weight:bold;font-size:1.08rem;cursor:pointer;transition:background 0.2s;">Enviar</button>
+        </form>
+    </div>
     <script>
-        // Clique na bolha mostra o nome da linguagem
+        // Efeito bolha no touch
         document.querySelectorAll('.bubble').forEach(bubble => {
-            bubble.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const alt = this.querySelector('img').alt;
-                alert('Linguagem: ' + alt);
+            bubble.addEventListener('touchstart', function() {
+                this.classList.add('touch-ativo');
+            });
+            bubble.addEventListener('touchend', function() {
+                this.classList.remove('touch-ativo');
+            });
+            bubble.addEventListener('touchcancel', function() {
+                this.classList.remove('touch-ativo');
             });
         });
-    </script>
-    <script>
-        // Efeito de movimento ao passar o dedo (touch) nas bolhas
-        document.querySelectorAll('.bubble').forEach(bubble => {
-            // Para mouse (já funciona com :hover no CSS)
-            // Para touch:
-            bubble.addEventListener('touchstart', function(e) {
-                this.style.transform = "scale(1.18) rotate(-8deg) translateY(-18%) translateX(10%)";
-                this.style.zIndex = "2";
-            });
-            bubble.addEventListener('touchend', function(e) {
-                this.style.transform = "";
-                this.style.zIndex = "";
-            });
-            bubble.addEventListener('touchcancel', function(e) {
-                this.style.transform = "";
-                this.style.zIndex = "";
-            });
+        document.getElementById('btn-pergunta').onclick = function() {
+            document.getElementById('form-pergunta-bg').style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('form-pergunta-bg').classList.add('ativo');
+            }, 10);
+        };
+        document.getElementById('cancelar-pergunta').onclick = function() {
+            document.getElementById('form-pergunta-bg').classList.remove('ativo');
+            setTimeout(() => {
+                document.getElementById('form-pergunta-bg').style.display = 'none';
+            }, 300);
+        };
+        // Mensagem de sucesso estilizada
+        function mostrarSucesso() {
+            const sucesso = document.getElementById('form-sucesso');
+            sucesso.style.display = 'block';
+            setTimeout(() => {
+                sucesso.style.display = 'none';
+            }, 3500);
+        }
+
+        document.getElementById('form-pergunta').onsubmit = function(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nome').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const pergunta = document.getElementById('pergunta').value.trim();
+            if (nome && email && pergunta) {
+                const destinatario = "nelizeu070@gmail.com";
+                const assunto = encodeURIComponent("Pergunta do site");
+                const corpo = encodeURIComponent(
+                    `Nome: ${nome}\nE-mail: ${email}\nPergunta: ${pergunta}`
+                );
+                window.location.href = `mailto:${destinatario}?subject=${assunto}&body=${corpo}`;
+                document.getElementById('form-pergunta-bg').style.display = 'none';
+                mostrarSucesso();
+            } else {
+                document.getElementById('form-erro').style.display = 'block';
+                document.getElementById('form-erro').innerText = 'Por favor, preencha todos os campos.';
+                setTimeout(() => {
+                    document.getElementById('form-erro').style.display = 'none';
+                }, 3000);
+            }
+        };
+
+        // Botão de voltar ao topo
+        const btnTopo = document.getElementById('btn-topo');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 200) {
+                btnTopo.style.display = 'block';
+            } else {
+                btnTopo.style.display = 'none';
+            }
         });
+        btnTopo.onclick = function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
     </script>
-    <script>
-document.querySelectorAll('.bubble').forEach(bubble => {
-    bubble.addEventListener('touchstart', function(e) {
-        this.classList.add('touch-ativo');
-    });
-    bubble.addEventListener('touchend', function(e) {
-        this.classList.remove('touch-ativo');
-    });
-    bubble.addEventListener('touchcancel', function(e) {
-        this.classList.remove('touch-ativo');
-    });
-});
-</script>
 </body>
 </html>

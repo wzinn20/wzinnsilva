@@ -9,6 +9,7 @@ body {
     min-height: 100vh;
     width: 100vw;
     overflow-x: hidden;
+    padding: 0 8px;
 }
 .background-img {
     position: fixed;
@@ -125,6 +126,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 .destaque-central h1 {
     margin: 0 0 1em 0;
@@ -265,7 +268,7 @@ main, footer {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(40px);}
+    from { opacity: 0; transform: translateY(10px);}
     to   { opacity: 1; transform: translateY(0);}
 }
 
@@ -332,4 +335,16 @@ section div video:hover {
         padding: 0.7em 0;
         font-size: 1rem;
     }
+}
+
+/* Adicione este CSS ao seu <style> para animar a entrada do formulário de perguntas */
+/* filepath: c:\Users\wilso\OneDrive\Área de Trabalho\wallisson ht\wallisson sites\wzinn\index.html.htm */
+#form-pergunta {
+    opacity: 0;
+    transform: scale(0.85) translateY(40px);
+    transition: opacity 0.35s, transform 0.35s;
+}
+#form-pergunta-bg.ativo #form-pergunta {
+    opacity: 1;
+    transform: scale(1) translateY(0);
 }
