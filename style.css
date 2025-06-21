@@ -1,3 +1,223 @@
+html,
+ body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+}
+.background-img {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -2;
+    background: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1500&q=80') no-repeat center center;
+    background-size: cover;
+    opacity: 0.35;
+}
+.bubbles-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+.bubble {
+    position: absolute;
+    width: 6vw; min-width: 24px; max-width: 60px;
+    height: 6vw; min-height: 24px; max-height: 60px;
+    opacity: 0.7;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: auto;
+    transition:
+        transform 0.3s cubic-bezier(.25,.8,.25,1),
+        box-shadow 0.3s,
+        background 0.3s,
+        filter 0.3s,
+        left 0.4s cubic-bezier(.25,.8,.25,1),
+        top 0.4s cubic-bezier(.25,.8,.25,1);
+    user-select: none;
+    animation: float-bubble 4s ease-in-out infinite;
+}
+.bubble img {
+    width: 60%; height: 60%;
+    object-fit: contain;
+    border-radius: 50%;
+    background: #fff;
+    padding: 6%;
+}
+.bubble:hover,
+.bubble.touch-ativo {
+    transform: scale(1.18) rotate(-8deg) translateY(-18%) translateX(10%);
+    box-shadow: 0 8px 32px 0 rgba(0,198,255,0.25), 0 0 0 6px #00c6ff44;
+    background: linear-gradient(135deg, #00c6ff 40%, #0072ff 100%);
+    filter: brightness(1.15) saturate(1.2);
+    opacity: 1;
+    z-index: 2;
+}
+@keyframes float-bubble {
+    0%   { transform: translateY(0) scale(1);}
+    50%  { transform: translateY(-18%) scale(1.07);}
+    100% { transform: translateY(0) scale(1);}
+}
+.bubble::after {
+    content: "";
+    position: absolute;
+    top: -18%;
+    left: -18%;
+    width: 136%;
+    height: 136%;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(ellipse at center, rgba(0,198,255,0.13) 0%, rgba(0,198,255,0.06) 60%, transparent 100%);
+    opacity: 0.7;
+    filter: blur(10px);
+    transition: opacity 0.4s;
+    animation: smoke-bubble 4s infinite alternate;
+}
+@keyframes smoke-bubble {
+    0%   { opacity: 0.7; filter: blur(10px);}
+    50%  { opacity: 1; filter: blur(18px);}
+    100% { opacity: 0.7; filter: blur(10px);}
+}
+.nome-canto {
+    position: fixed;
+    bottom: 2vw;
+    right: 3vw;
+    background: linear-gradient(90deg, #222 0%, #ffffff 100%);
+    color: #111;
+    padding: 1em 2em;
+    border-radius: 16px 0 16px 16px;
+    font-size: clamp(0.85rem, 2vw, 1.05rem);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    z-index: 10;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    letter-spacing: 1px;
+    font-weight: bold;
+    max-width: 90vw;
+    word-break: break-word;
+}
+.destaque-central {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.92);
+    color: #232526;
+    padding: 2.5em 2em 2em 2em;
+    border-radius: 22px;
+    box-shadow: 0 8px 48px rgba(0,0,0,0.18);
+    text-align: center;
+    z-index: 20;
+    max-width: 95vw;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.destaque-central h1 {
+    margin: 0 0 1em 0;
+    font-size: clamp(1.1rem, 5vw, 2.1rem);
+    color: #000;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+    text-shadow: 0 2px 12px #00c6ff22;
+    word-break: break-word;
+}
+.destaque-central p {
+    font-size: clamp(0.95rem, 3vw, 1.15rem);
+    line-height: 1.7;
+    margin: 0;
+    display: block;
+    text-align: center;
+    word-break: break-word;
+}
+footer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background: transparent;
+    box-shadow: none;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    flex-wrap: wrap;
+    padding: 0.7em 0 0.7em 0;
+    margin: 0;
+}
+.botao-contato,
+.botao-contato.instagram,
+.botao-contato.email,
+.botao-contato.whatsapp {
+    display: inline-block;
+    margin: 0 8px 0 0;
+    padding: 0.7em 2em;
+    border-radius: 24px;
+    font-weight: bold;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(90deg, #111 0%, #555 100%);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    transition: background 0.3s, color 0.2s, transform 0.2s;
+    border: none;
+    outline: none;
+    position: relative;
+    min-width: 120px;
+    text-align: center;
+}
+.botao-contato:hover,
+.botao-contato.instagram:hover,
+.botao-contato.email:hover,
+.botao-contato.whatsapp:hover {
+    background: linear-gradient(90deg, #555 0%, #111 100%);
+    color: #fff;
+    transform: translateY(-2px) scale(1.05);
+    text-decoration: none;
+}
+.painel-gmail {
+    position: relative;
+}
+.painel-email {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 110%;
+    transform: translateX(-50%);
+    background: #fff;
+    color: #222;
+    padding: 14px 22px;
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+    font-size: 1rem;
+    min-width: 180px;
+    z-index: 100;
+    text-align: center;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-weight: 500;
+    white-space: nowrap;
+}
+.painel-gmail:hover .painel-email,
+.painel-gmail:focus-within .painel-email {
+    display: block;
+}
+.painel-gmail:hover,
+.painel-gmail:focus-within {
+    z-index: 101;
+}
 /* Animação das bolhas */
 .bubbles-bg {
     position: fixed;
@@ -71,23 +291,45 @@ section div video:hover {
     box-shadow: 0 8px 32px rgba(0,0,0,0.25);
 }
 
+@media (max-width: 900px) {
+    .destaque-central {
+        max-width: 98vw;
+        min-width: unset;
+        padding: 1.2em 4vw;
+    }
+    .bubble {
+        min-width: 18px; min-height: 18px;
+        max-width: 40px; max-height: 40px;
+    }
+}
 @media (max-width: 600px) {
-    main {
-        padding: 16px 4px;
+    .destaque-central {
+        padding: 0.7em 2vw;
+        min-width: unset;
     }
-    div{
+    .nome-canto {
+        font-size: 0.85rem;
+        padding: 0.5em 1em;
+        right: 2vw;
+        bottom: 2vw;
+    }
+    .bubble {
+        min-width: 12px; min-height: 12px;
+        max-width: 28px; max-height: 28px;
+    }
+    .bubble img {
+        padding: 2%;
+    }
+    footer {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
+        gap: 0.5em;
+        margin-top: 1em;
     }
-}
-code{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color:black;
-}
-h1{
-    align-items:end;
-    display: flex;;
+    .botao-contato {
+        width: 90vw;
+        max-width: 320px;
+        margin: 0 auto;
+        padding: 0.7em 0;
+        font-size: 1rem;
+    }
 }
