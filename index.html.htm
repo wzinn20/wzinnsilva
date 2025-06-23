@@ -139,7 +139,7 @@
             <input type="text" id="assunto" name="Assunto" placeholder="Assunto" required>
             <textarea id="pergunta" name="Pergunta" placeholder="Digite sua pergunta" required></textarea>
             <button type="submit">Enviar</button>
-            <input type="hidden" name="_next" value="https://seusite.com/obrigado.html">
+            <input type="hidden" name="_next" value="">
             <input type="hidden" name="_captcha" value="false">
         </form>
     </div>
@@ -201,6 +201,25 @@
                 msg.style.display = 'none';
             }, 2500);
         };
+        document.getElementById('form-pergunta').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = this;
+    fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+    }).then(response => {
+        if (response.ok) {
+            form.reset();
+            document.getElementById('form-pergunta-bg').style.display = 'none';
+            mostrarSucesso();
+        } else {
+            alert('Erro ao enviar. Tente novamente.');
+        }
+    }).catch(() => {
+        alert('Erro ao enviar. Tente novamente.');
+    });
+});
     </script>
     <footer class="footer-direitos">
         © 2025 Wallisson Elizeu Candido Da Silva. Todos os direitos reservados.
