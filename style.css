@@ -532,11 +532,6 @@ footer .botao-contato img {
     .destaque-central {
         order: 1;
     }
-    body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
 }
 .menu a {
     color: #fff;
