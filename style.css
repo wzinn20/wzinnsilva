@@ -562,51 +562,5 @@ footer .botao-contato img {
     user-select: none;
     width: auto;
     text-align: left;
-}
-
-/* No celular: centralizado embaixo */
-@media (max-width: 700px) {
-    .footer-direitos {
-        left: 0;
-        right: 0;
-        bottom: 0;
-        text-align: center;
-        padding: 10px 0;
-        font-size: 0.93rem;
-        width: 100vw;
-        background: #fff;
-        color: #232526;
-        border-radius: 0;
-    }
-}
-.footer-direitos {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    background: transparent;
-    color: #000;
-    font-size: 0.95rem;
-    margin: 0;
-    padding: 8px 18px;
-    z-index: 9999;
-    pointer-events: none;
-    user-select: none;
-    width: auto;
-    text-align: left;
-}
-
-/* No celular: centralizado embaixo */
-@media (max-width: 600px) {
-    .footer-direitos {
-        left: 0;
-        right: 0;
-        bottom: 0;
-        text-align: left;
-        padding: 10px 0;
-        font-size: 0.93rem;
-        width: 100vw;
-        background: #fff;
-        color: #232526;
-        border-radius: 0;
-    }
+    border-radius: 0;
 }
