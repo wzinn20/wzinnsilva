@@ -439,6 +439,16 @@ footer .botao-contato img {
         padding: 0;
         border-radius: 0;
     }
+    .menu {
+        flex-direction: column;
+        gap: 10px;
+        font-size: 1em;
+    }
+    #msg-sem-projetos {
+        font-size: 0.95em;
+        padding: 8px 8px;
+        max-width: 95vw;
+    }
 }
 
 /* SOBRE MIM */
@@ -501,18 +511,18 @@ footer .botao-contato img {
 
 /* MENU */
 .menu {
-    width: 100%;
-    background: #23283a;
+    width: 100vw;
+    background: rgba(35,40,58,0.95);
     padding: 12px 0;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 32px;
+    align-items: center;
+    gap: 18px;
     position: sticky;
     top: 0;
-    z-index: 100;
-    border: none !important;
-    box-shadow: none !important;
-    background: transparent !important;
+    z-index: 1000;
+    box-sizing: border-box;
 }
 .menu a {
     color: #fff;
@@ -541,5 +551,76 @@ footer .botao-contato img {
     .menu {
 
 width: 30%;
+    }
+}
+
+/* Aviso responsivo */
+.msg-sem-projetos, #msg-sem-projetos {
+    display: none;
+    color: #fff;
+    background: #23283a;
+    border-radius: 8px;
+    margin-top: 6px;
+    padding: 6px 16px;
+    font-size: 0.98em;
+    text-align: center;
+    width: 100%;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 2000;
+    box-sizing: border-box;
+    word-break: break-word;
+}
+
+/* Menu responsivo */
+.menu {
+    width: 100vw;
+    background: rgba(35,40,58,0.95);
+    padding: 12px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+@media (max-width: 900px) {
+    .menu {
+        flex-direction: column;
+        gap: 10px;
+        font-size: 1em;
+        width: 100vw;
+    }
+    .botao-contato {
+        width: 96vw !important;
+        max-width: 340px !important;
+        margin: 6px auto !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        font-size: 1rem !important;
+    }
+    .msg-sem-projetos, #msg-sem-projetos {
+        font-size: 0.95em;
+        padding: 8px 8px;
+        max-width: 95vw;
+    }
+}
+@media (max-width: 600px) {
+    .menu {
+        flex-direction: column;
+        gap: 8px;
+        font-size: 0.98em;
+        width: 100vw;
+    }
+    .msg-sem-projetos, #msg-sem-projetos {
+        font-size: 0.92em;
+        padding: 7px 4vw;
+        max-width: 98vw;
     }
 }
