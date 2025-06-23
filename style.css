@@ -512,7 +512,6 @@ footer .botao-contato img {
 /* MENU */
 .menu {
     width: 100vw;
-    background: rgba(35,40,58,0.95);
     padding: 12px 0;
     display: flex;
     flex-wrap: wrap;
@@ -523,6 +522,27 @@ footer .botao-contato img {
     top: 0;
     z-index: 1000;
     box-sizing: border-box;
+}
+
+/* Para telas pequenas: menu embaixo do texto central */
+@media (max-width: 700px) {
+    .menu {
+        position: static !important;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 18px;
+        margin-bottom: 0;
+        width: 100vw;
+        order: 2;
+    }
+    .destaque-central {
+        order: 1;
+    }
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 .menu a {
     color: #fff;
@@ -577,7 +597,6 @@ width: 30%;
 /* Menu responsivo */
 .menu {
     width: 100vw;
-    background: rgba(35,40,58,0.95);
     padding: 12px 0;
     display: flex;
     flex-wrap: wrap;
