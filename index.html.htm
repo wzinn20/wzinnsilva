@@ -24,7 +24,7 @@
             <img src="https://img.icons8.com/ios-filled/24/ffffff/source-code.png" alt="Projetos" style="vertical-align:middle;margin-right:6px;">
             Projetos
         </a>
-        <div id="msg-sem-projetos" class="msg-sem-projetos">
+        <div id="msg-sem-projetos" class="msg-sem-projetos" style="color:#ff4444;">
             Não há projetos no momento.
         </div>
         <a href="#" class="botao-contato" id="btn-pergunta-link">
@@ -177,28 +177,8 @@
                 sucesso.style.display = 'none';
             }, 3500);
         }
-        document.getElementById('form-pergunta').onsubmit = function(e) {
-            e.preventDefault();
-            const nome = document.getElementById('nome').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const pergunta = document.getElementById('pergunta').value.trim();
-            if (nome && email && pergunta) {
-                const destinatario = "nelizeu070@gmail.com";
-                const assunto = encodeURIComponent("Pergunta do site");
-                const corpo = encodeURIComponent(
-                    `Nome: ${nome}\nE-mail: ${email}\nPergunta: ${pergunta}`
-                );
-                window.location.href = `mailto:${destinatario}?subject=${assunto}&body=${corpo}`;
-                document.getElementById('form-pergunta-bg').style.display = 'none';
-                mostrarSucesso();
-            } else {
-                document.getElementById('form-erro').style.display = 'block';
-                document.getElementById('form-erro').innerText = 'Por favor, preencha todos os campos.';
-                setTimeout(() => {
-                    document.getElementById('form-erro').style.display = 'none';
-                }, 3000);
-            }
-        };
+        
+           
         // Botão de voltar ao topo
         const btnTopo = document.getElementById('btn-topo');
         window.addEventListener('scroll', function() {
