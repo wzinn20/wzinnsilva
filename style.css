@@ -213,19 +213,13 @@ footer .botao-contato img {
 
 /* FORMULÁRIO DE PERGUNTA */
 #form-pergunta-bg {
-    display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 999;
-    background: rgba(0,0,0,0.55);
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: none;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.3s;
-    opacity: 0;
-    pointer-events: none;
+    background: rgba(35,40,58,0.95);
+    z-index: 3000 !important;
 }
 #form-pergunta-bg.ativo {
     opacity: 1;
