@@ -19,29 +19,48 @@
             Eu também gosto de aprender sobre novas tecnologias e tendências na área de programação.
         </p>
     </div>
+
+    <!-- Seções para cada linguagem, rolando normalmente na página -->
+    <section id="python" class="secao-linguagem">
+        <h2>Python</h2>
+        <p>Python é uma linguagem de programação poderosa, fácil de aprender e muito utilizada para automação, análise de dados, inteligência artificial e desenvolvimento web.</p>
+    </section>
+    <section id="javascript" class="secao-linguagem">
+        <h2>JavaScript</h2>
+        <p>JavaScript é a linguagem da web, usada para criar páginas interativas, aplicações web dinâmicas e até mesmo servidores com Node.js.</p>
+    </section>
+    <section id="html" class="secao-linguagem">
+        <h2>HTML</h2>
+        <p>HTML (HyperText Markup Language) é a base de toda página web, responsável pela estrutura e marcação do conteúdo.</p>
+    </section>
+    <section id="css" class="secao-linguagem">
+        <h2>CSS</h2>
+        <p>CSS (Cascading Style Sheets) é utilizado para estilizar páginas web, definindo cores, layouts, fontes e responsividade.</p>
+    </section>
+
     <nav class="menu">
         <a href="#projetos" class="botao-contato" id="btn-projetos">
             <img src="https://img.icons8.com/ios-filled/24/ffffff/source-code.png" alt="Projetos" style="vertical-align:middle;margin-right:6px;">
             Projetos
         </a>
         <div id="msg-sem-projetos" class="msg-sem-projetos" style="
-    display:none;
-    color:#fff;
-    background:#000;
-    border-radius:10px;
-    margin-top:10px;
-    padding:14px 24px;
-    font-size:1.15em;
-    font-weight:bold;
-    text-align:center;
-    box-shadow:0 4px 18px #0004;
-    border:2px solid #fff;
-    max-width:320px;
-    margin-left:auto;
-    margin-right:auto;
-    position:relative;
-    z-index:3000;
-">
+            display:none;
+            color:#fff;
+            background:#000;
+            border-radius:10px;
+            margin-top:10px;
+            padding:14px 24px;
+            font-size:1.15em;
+            font-weight:bold;
+            text-align:center;
+            box-shadow:0 4px 18px #0004;
+            border:2px solid #fff;
+            max-width:320px;
+            margin-left:auto;
+            margin-right:auto;
+            position:relative;
+            z-index:3000;
+        ">
             Não há projetos no momento.
         </div>
         <a href="#" class="botao-contato" id="btn-pergunta-link">
@@ -50,7 +69,7 @@
         <a href="https://instagram.com/wzinn_v7" target="_blank" class="botao-contato" aria-label="Instagram">
             <img src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new.png" alt="Instagram">Instagram
         </a>
-        <a href="https://wa.me/+55 87 91724618" target="_blank" class="botao-contato" aria-label="WhatsApp">
+        <a href="https://wa.me/+55 87 991724618" target="_blank" class="botao-contato" aria-label="WhatsApp">
             <img src="https://img.icons8.com/ios-filled/24/ffffff/whatsapp.png" alt="WhatsApp">WhatsApp
         </a>
     </nav>
@@ -146,20 +165,23 @@
     </div>
     <!-- Botão de voltar ao topo -->
     <button id="btn-topo" title="Voltar ao topo">↑</button>
-    <div id="form-pergunta-bg">
-        <form id="form-pergunta" action="https://formsubmit.co/nelizeu070@gmail.com" method="POST">
-            <button type="button" id="cancelar-pergunta" title="Fechar">×</button>
-            <h2>Envie sua pergunta</h2>
+    <div id="form-pergunta-bg" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;align-items:center;justify-content:center;z-index:3000;background:rgba(35,40,58,0.95);">
+        <form id="form-pergunta" action="https://formsubmit.co/nelizeu070@gmail.com" method="POST" style="background:#fff;border-radius:12px;box-shadow:0 4px 24px #0008;padding:32px 24px;max-width:350px;width:90vw;position:relative;">
+            <button type="button" id="cancelar-pergunta" title="Fechar" style="position:absolute;top:10px;right:14px;background:#23283a;color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:1.3em;font-weight:bold;cursor:pointer;box-shadow:0 2px 8px #0002;display:flex;align-items:center;justify-content:center;padding:0;transition:background 0.2s,transform 0.2s;">×</button>
+            <h2 style="margin-top:0; text-align:center;">Envie sua pergunta</h2>
             <div id="form-erro"></div>
-            <input type="text" id="nome" name="Nome" placeholder="Seu nome" required>
-            <input type="email" id="email" name="Email" placeholder="Seu e-mail" required>
-            <input type="text" id="assunto" name="Assunto" placeholder="Assunto" required>
-            <textarea id="pergunta" name="Pergunta" placeholder="Digite sua pergunta" required></textarea>
-            <button type="submit">Enviar</button>
-            <input type="hidden" name="_next" value="">
+            <input type="text" id="nome" name="Nome" placeholder="Seu nome" required style="width:100%;margin-bottom:10px;padding:8px 10px;border-radius:7px;border:1.5px solid #00c6ff;font-size:1rem;">
+            <input type="email" id="email" name="Email" placeholder="Seu e-mail" required style="width:100%;margin-bottom:10px;padding:8px 10px;border-radius:7px;border:1.5px solid #00c6ff;font-size:1rem;">
+            <input type="text" id="assunto" name="Assunto" placeholder="Assunto" required style="width:100%;margin-bottom:10px;padding:8px 10px;border-radius:7px;border:1.5px solid #00c6ff;font-size:1rem;">
+            <textarea id="pergunta" name="Pergunta" placeholder="Digite sua pergunta" required style="width:100%;margin-bottom:14px;padding:8px 10px;border-radius:7px;border:1.5px solid #00c6ff;font-size:1rem;min-height:70px;"></textarea>
+            <button type="submit" style="background:#23283a;color:#fff;border:none;border-radius:8px;padding:10px 28px;font-size:1rem;font-weight:bold;cursor:pointer;box-shadow:0 2px 12px #0004;transition:background 0.2s,transform 0.2s;">Enviar</button>
+            <input type="hidden" name="_next" value="https://seusite.com/obrigado.html">
             <input type="hidden" name="_captcha" value="false">
         </form>
     </div>
+
+    
+
     <script>
         // Efeito bolha no touch
         document.querySelectorAll('.bubble').forEach(bubble => {
@@ -194,8 +216,6 @@
                 sucesso.style.display = 'none';
             }, 3500);
         }
-        
-           
         // Botão de voltar ao topo
         const btnTopo = document.getElementById('btn-topo');
         window.addEventListener('scroll', function() {
@@ -208,7 +228,6 @@
         btnTopo.onclick = function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
-
         // Mensagem "Não há projetos no momento"
         document.getElementById('btn-projetos').onclick = function(e) {
             e.preventDefault();
@@ -219,27 +238,29 @@
             }, 2500);
         };
         document.getElementById('form-pergunta').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const form = this;
-    fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-    }).then(response => {
-        if (response.ok) {
-            form.reset();
-            document.getElementById('form-pergunta-bg').style.display = 'none';
-            mostrarSucesso();
-        } else {
-            alert('Erro ao enviar. Tente novamente.');
-        }
-    }).catch(() => {
-        alert('Erro ao enviar. Tente novamente.');
-    });
-});
+            e.preventDefault();
+            const form = this;
+            fetch(form.action, {
+                method: "POST",
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    form.reset();
+                    document.getElementById('form-pergunta-bg').style.display = 'none';
+                    mostrarSucesso();
+                } else {
+                    alert('Erro ao enviar. Tente novamente.');
+                }
+            }).catch(() => {
+                alert('Erro ao enviar. Tente novamente.');
+            });
+        });
     </script>
     <footer class="footer-direitos">
         © 2025 Wallisson Elizeu Candido Da Silva. Todos os direitos reservados.
     </footer>
 </body>
 </html>
+
+
